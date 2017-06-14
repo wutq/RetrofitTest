@@ -26,21 +26,21 @@ public class ApiUtils {
      */
     public void getUser(Subscriber<BaseResponse<UserBean>> subscriber) {
         api.getUser()
-                .compose(RxHelper.schedulers())
+                .compose(HttpUtil.schedulers())
                 .subscribe(subscriber);
 
     }
 
     public void getUserList(Subscriber<BaseResponse<List<UserBean>>> subscriber) {
         api.getUserList()
-                .compose(RxHelper.schedulers())
+                .compose(HttpUtil.schedulers())
                 .subscribe(subscriber);
     }
 
 
     public void upLoadText(String params, Subscriber<BaseResponse<String>> subscriber) {
         api.upLoadText(params)
-                .compose(RxHelper.schedulers())
+                .compose(HttpUtil.schedulers())
                 .subscribe(subscriber);
     }
 }

@@ -12,6 +12,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * 网络请求帮助类
@@ -97,5 +100,17 @@ public class HttpUtil {
         return iApi;    
     }
 
+    // 设置请求的线程 重复代码 每次都要写所以封装起来
+    public static Observable.Transformer schedulers() {
+        return new Observable.Transformer() {
+            @Override
+            public Object call(Object observable) {
+                return ((Observable) observable)
+                        .subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
 
 }
