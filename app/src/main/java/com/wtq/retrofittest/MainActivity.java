@@ -13,7 +13,10 @@ import java.util.List;
 
 import rx.Subscriber;
 
-
+/**
+ * Describe：入口
+ * Created by 吴天强 on 2017/8/22.
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = "MainActivity";
     private ApiUtils apiUtils;
